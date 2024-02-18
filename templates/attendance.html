@@ -1,0 +1,71 @@
+<!-- attendance.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Management System</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student Attendance Management System</h2>
+        <br>
+        <h3>Mark Attendance :</h3>
+        <form action="/mark_attendance" method="POST" class="attendance-form">
+            <label for="roll_number">Enter Roll Number:</label>
+            <input type="text" id="roll_number" name="roll_number">
+            <button type="submit">Mark Attendance</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="{{ message.split(':')[0] }}">{{ message.split(':')[1] }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h3>Students List : </h3><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Department</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.roll_number }}</td>
+                    <td>{{ student.department }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div class="links">
+            <a href="/dashboard">Back to dashboard Page</a>
+            <a style="float: right;" href="/logout">Logout</a>
+        </div>
+        <!-- Add this code to your HTML templates where you want to display flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+    </div>
+</body>
+
+</html>

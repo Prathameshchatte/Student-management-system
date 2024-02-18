@@ -1,0 +1,48 @@
+<!-- attendance_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Add your CSS styles here if necessary -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Attendance List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attendance in attendance_list %}
+                <tr>
+                    <td>{{ attendance.name }}</td>
+                    <td>{{ attendance.roll_number }}</td>
+                    <td>{{ attendance.date }}</td>
+                    <td>{{ attendance.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div class="links">
+            <a href="/dashboard">Back to dashboard</a>
+            <a href="/logout" style="float: right;">Logout</a>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

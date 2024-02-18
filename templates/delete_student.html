@@ -1,0 +1,42 @@
+<!-- delete_student.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Student</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Delete Student</h2>
+        <form action="/delete_student" method="POST" class="add-stu-form">
+            <label for="roll_number">Enter Roll Number:</label>
+            <input type="text" id="roll_number" name="roll_number"><br><br>
+            <button type="submit" class="btn">Delete Student</button>
+        </form>
+        <div class="links">
+            <a href="/dashboard">Back to dashboard Page</a>
+
+        </div>
+        <!-- Add this code to your HTML templates where you want to display flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+
+</body>
+
+</html>
